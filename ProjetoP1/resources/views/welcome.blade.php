@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Página Inicial - Sistema de Vendas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -49,15 +49,15 @@
 <body>
     <div class="overlay">
         <div class="content">
-            <h1>Bem-vindo ao SIVA!</h1>
-            <p>Acesse sua conta ou crie uma nova para acessar as vagas disponíveis.</p>
-            <a href="{{ route('login') }}" class="btn btn-primary btn-lg">Entrar</a>
-            <a href="{{ route('register') }}" class="btn btn-success btn-lg">Cadastro</a>
+            <h1>Bem-vindo ao Sistema de Vendas!</h1>
+            <p>Cadastre seus clientes e gerencie suas vendas de forma eficiente.</p>
+            <a href="{{ route('clientes.index') }}" class="btn btn-primary btn-lg">Listar Clientes</a>
+            <a href="{{ route('clientes.create') }}" class="btn btn-success btn-lg">Cadastrar Cliente</a>
         </div>
     </div>
 
     <footer class="text-center mt-5" style="position: absolute; bottom: 10px; width: 100%;">
-        <p>&copy; {{ date('Y') }} SIVA. Todos os direitos reservados.</p>
+        <p>&copy; {{ date('Y') }} Sistema de Vendas. Todos os direitos reservados.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

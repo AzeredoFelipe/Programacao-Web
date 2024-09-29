@@ -109,21 +109,12 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="vagaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-briefcase"></i> Vagas
+                    <a class="nav-link dropdown-toggle" href="#" id="clienteDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-users"></i> Clientes
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="vagaDropdown">
-                        <a class="dropdown-item" href="{{ url('/vagas/create') }}">Cadastrar Vaga</a>
-                        <a class="dropdown-item" href="{{ url('/vagas') }}">Listar Vagas</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="cidadeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-map-marker-alt"></i> Cidades
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="cidadeDropdown">
-                        <a class="dropdown-item" href="{{ url('/cidades/create') }}">Cadastrar Cidade</a>
-                        <a class="dropdown-item" href="{{ url('/cidades') }}">Listar Cidades</a>
+                    <div class="dropdown-menu" aria-labelledby="clienteDropdown">
+                        <a class="dropdown-item" href="{{ url('/clientes/create') }}">Cadastrar Cliente</a>
+                        <a class="dropdown-item" href="{{ url('/clientes') }}">Listar Clientes</a>
                     </div>
                 </li>
             </ul>
@@ -141,40 +132,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link submenu" data-toggle="collapse" href="#vagaMenu" role="button" aria-expanded="false" aria-controls="vagaMenu">
-                                <i class="fas fa-briefcase"></i> Vagas
+                            <a class="nav-link submenu" data-toggle="collapse" href="#clienteMenu" role="button" aria-expanded="false" aria-controls="clienteMenu">
+                                <i class="fas fa-users"></i> Clientes
                                 <i class="fas fa-angle-down submenu-icon"></i>
                             </a>
-                            <div class="collapse" id="vagaMenu">
+                            <div class="collapse" id="clienteMenu">
                                 <ul class="nav flex-column submenu">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/vagas/create') }}">
-                                            Cadastrar Vaga
+                                        <a class="nav-link" href="{{ url('/clientes/create') }}">
+                                            Cadastrar Cliente
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/vagas') }}">
-                                            Listar Vagas
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link submenu" data-toggle="collapse" href="#cidadeMenu" role="button" aria-expanded="false" aria-controls="cidadeMenu">
-                                <i class="fas fa-map-marker-alt"></i> Cidades
-                                <i class="fas fa-angle-down submenu-icon"></i>
-                            </a>
-                            <div class="collapse" id="cidadeMenu">
-                                <ul class="nav flex-column submenu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/cidades/create') }}">
-                                            Cadastrar Cidade
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/cidades') }}">
-                                            Listar Cidades
+                                        <a class="nav-link" href="{{ url('/clientes') }}">
+                                            Listar Clientes
                                         </a>
                                     </li>
                                 </ul>
@@ -193,7 +164,7 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                {{$slot}}
+                @yield('content') <!-- Alterado de {{$slot}} para @yield('content') -->
             </main>
         </div>
     </div>
