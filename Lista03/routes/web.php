@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FormController;
 use App\Http\Controllers\ListaController;
 
+
 Route::get("/", function () {
-    return view('Inicio');
+    return view("index");
 });
 
 // Exercício 01

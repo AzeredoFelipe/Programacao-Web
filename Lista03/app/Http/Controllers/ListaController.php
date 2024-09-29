@@ -17,8 +17,7 @@ class ListaController extends Controller
         $valor1 = (int)$request->input("val01");
         $valor2 = (int)$request->input("val02");
 
-        $resultado = $valor1 + $valor2;
-        return view("ex01", ['resultado' => $resultado]);
+        return $valor1 + $valor2;
     }
 
     // Exercício 02
@@ -32,8 +31,7 @@ class ListaController extends Controller
         $valor1 = (int)$request->input("val01");
         $valor2 = (int)$request->input("val02");
 
-        $resultado = $valor1 - $valor2;
-        return view("ex02", ['resultado' => $resultado]);
+        return $valor1 - $valor2;
     }
 
     // Exercício 03
@@ -47,8 +45,7 @@ class ListaController extends Controller
         $valor1 = (int)$request->input("val01");
         $valor2 = (int)$request->input("val02");
 
-        $resultado = $valor1 * $valor2;
-        return view("ex03", ['resultado' => $resultado]);
+        return $valor1 * $valor2;
     }
 
     // Exercício 04
@@ -63,11 +60,10 @@ class ListaController extends Controller
         $valor2 = (int)$request->input("val02");
 
         if ($valor2 == 0) {
-            return view("ex04", ['resultado' => "Divisão por zero!"]);
+            return "Divisão por zero!";
         }
 
-        $resultado = $valor1 / $valor2;
-        return view("ex04", ['resultado' => $resultado]);
+        return $valor1 / $valor2;
     }
 
     // Exercício 05
@@ -82,8 +78,7 @@ class ListaController extends Controller
         $nota2 = (float)$request->input("nota02");
         $nota3 = (float)$request->input("nota03");
 
-        $resultado = ($nota1 + $nota2 + $nota3) / 3;
-        return view("ex05", ['resultado' => $resultado]);
+        return ($nota1 + $nota2 + $nota3) / 3;
     }
 
     // Exercício 06
@@ -96,8 +91,7 @@ class ListaController extends Controller
     {
         $celsius = (float)$request->input("celsius");
 
-        $resultado = ($celsius * 9 / 5) + 32;
-        return view("ex06", ['resultado' => $resultado]);
+        return ($celsius * 9 / 5) + 32;
     }
 
     // Exercício 07
@@ -110,8 +104,7 @@ class ListaController extends Controller
     {
         $fahrenheit = (float)$request->input("fahrenheit");
 
-        $resultado = ($fahrenheit - 32) * 5 / 9;
-        return view("ex07", ['resultado' => $resultado]);
+        return ($fahrenheit - 32) * 5 / 9;
     }
 
     // Exercício 08
@@ -125,8 +118,7 @@ class ListaController extends Controller
         $largura = (float)$request->input("largura");
         $altura = (float)$request->input("altura");
 
-        $resultado = $largura * $altura;
-        return view("ex08", ['resultado' => $resultado]);
+        return $largura * $altura;
     }
 
     // Exercício 09
@@ -139,8 +131,7 @@ class ListaController extends Controller
     {
         $raio = (float)$request->input("raio");
 
-        $resultado = pi() * $raio * $raio;
-        return view("ex09", ['resultado' => $resultado]);
+        return pi() * $raio * $raio;
     }
 
     // Exercício 10
@@ -154,8 +145,7 @@ class ListaController extends Controller
         $largura = (float)$request->input("largura");
         $altura = (float)$request->input("altura");
 
-        $resultado = 2 * ($largura + $altura);
-        return view("ex10", ['resultado' => $resultado]);
+        return 2 * ($largura + $altura);
     }
 
     // Exercício 11
@@ -168,8 +158,7 @@ class ListaController extends Controller
     {
         $raio = (float)$request->input("raio");
 
-        $resultado = 2 * pi() * $raio;
-        return view("ex11", ['resultado' => $resultado]);
+        return 2 * pi() * $raio;
     }
 
     // Exercício 12
@@ -183,8 +172,7 @@ class ListaController extends Controller
         $base = (float)$request->input("base");
         $expoente = (float)$request->input("expoente");
 
-        $resultado = $base ** $expoente;
-        return view("ex12", ['resultado' => $resultado]);
+        return $base ** $expoente;
     }
 
     // Exercício 13
@@ -197,8 +185,7 @@ class ListaController extends Controller
     {
         $metros = (float)$request->input("metros");
 
-        $resultado = $metros * 100;
-        return view("ex13", ['resultado' => $resultado]);
+        return $metros * 100;
     }
 
     // Exercício 14
@@ -211,8 +198,7 @@ class ListaController extends Controller
     {
         $quilometros = (float)$request->input("quilometros");
 
-        $resultado = $quilometros * 0.621371;
-        return view("ex14", ['resultado' => $resultado]);
+        return $quilometros * 0.621371;
     }
 
     // Exercício 15
@@ -226,8 +212,7 @@ class ListaController extends Controller
         $peso = (float)$request->input("peso");
         $altura = (float)$request->input("altura");
 
-        $resultado = $peso / ($altura * $altura);
-        return view("ex15", ['resultado' => $resultado]);
+        return $peso / ($altura * $altura);
     }
 
     // Exercício 16
@@ -241,8 +226,7 @@ class ListaController extends Controller
         $preco = (float)$request->input("preco");
         $desconto = (float)$request->input("desconto");
 
-        $resultado = $preco - ($preco * $desconto / 100);
-        return view("ex16", ['resultado' => $resultado]);
+        return $preco - ($preco * $desconto / 100);
     }
 
     // Exercício 17
@@ -257,8 +241,7 @@ class ListaController extends Controller
         $taxa = (float)$request->input("taxa");
         $periodo = (float)$request->input("periodo");
 
-        $resultado = $capital * $taxa * $periodo;
-        return view("ex17", ['resultado' => $resultado]);
+        return $capital * $taxa * $periodo;
     }
 
     // Exercício 18
@@ -273,8 +256,7 @@ class ListaController extends Controller
         $taxa = (float)$request->input("taxa");
         $periodo = (float)$request->input("periodo");
 
-        $resultado = $capital * (1 + $taxa) ** $periodo;
-        return view("ex18", ['resultado' => $resultado]);
+        return $capital * (1 + $taxa) ** $periodo;
     }
 
     // Exercício 19
@@ -291,8 +273,7 @@ class ListaController extends Controller
         $minutos = $horas * 60;
         $segundos = $minutos * 60;
 
-        $resultado = "Horas: $horas, Minutos: $minutos, Segundos: $segundos";
-        return view("ex19", ['resultado' => $resultado]);
+        return "Horas: $horas, Minutos: $minutos, Segundos: $segundos";
     }
 
     // Exercício 20
@@ -306,7 +287,6 @@ class ListaController extends Controller
         $distancia = (float)$request->input("distancia");
         $tempo = (float)$request->input("tempo");
 
-        $resultado = $distancia / $tempo;
-        return view("ex20", ['resultado' => $resultado]);
+        return $distancia / $tempo;
     }
 }
