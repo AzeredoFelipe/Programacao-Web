@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente; // Certifique-se de que você importou o modelo Cliente
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -20,15 +20,21 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        // Valida e armazena o novo cliente
+        // Validação dos campos
         $request->validate([
-            'nome' => 'required|string|max:255',
-            // adicione outras validações conforme necessário
+            'nome_fantasia' => 'required|string|max:255',
+            'razao_social'  => 'required|string|max:255',
+            'email'         => 'required|email|max:255',
+            'telefone'      => 'required|string|max:20',
+            'cnpj'          => 'required|string|max:14',
+            'endereco'      => 'required|string|max:255',
+            
         ]);
 
-        Cliente::create($request->all()); // Armazena o cliente
+        // Armazena o cliente com todos os campos
+        Cliente::create($request->all());
 
-        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
+        return redirect()->route('clientes.index');
     }
 
     public function show(Cliente $cliente)
@@ -43,20 +49,28 @@ class ClienteController extends Controller
 
     public function update(Request $request, Cliente $cliente)
     {
-        // Valida e atualiza o cliente
+        // Validação dos campos ao atualizar
         $request->validate([
-            'nome' => 'required|string|max:255',
-            // adicione outras validações conforme necessário
+            'nome_fantasia' => 'required|string|max:255',
+            'razao_social'  => 'required|string|max:255',
+            'email'         => 'required|email|max:255',
+            'telefone'      => 'required|string|max:20',
+            'cnpj'          => 'required|string|max:14',
+            'endereco'      => 'required|string|max:255',
+            'cidade'        => 'nullable|string|max:255', 
+            'estado'        => 'nullable|string|max:255',
+            
         ]);
 
-        $cliente->update($request->all()); // Atualiza o cliente
+        // Atualiza o cliente com todos os campos
+        $cliente->update($request->all());
 
-        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
+        return redirect()->route('clientes.index');
     }
 
     public function destroy(Cliente $cliente)
     {
         $cliente->delete(); // Exclui o cliente
-        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
+        return redirect()->route('clientes.index');
     }
 }

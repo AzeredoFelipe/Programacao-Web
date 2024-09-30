@@ -29,6 +29,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="razao_social" class="form-label">Razão Social</label>
+                <input type="text" class="form-control" id="razao_social" name="razao_social" required>
+            </div>
+
+            <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
@@ -43,6 +48,22 @@
                 <input type="text" class="form-control" id="cnpj" name="cnpj" required>
             </div>
 
+            <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cidade" class="form-label">Cidade:</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado:</label>
+                <input type="text" class="form-control" id="estado" name="estado" required>
+            </div>
+
+          
             <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
         </form>
 

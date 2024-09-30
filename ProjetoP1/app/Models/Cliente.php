@@ -24,6 +24,8 @@ class Cliente extends Model
         'cep',              // CEP do cliente
         'telefone',         // Telefone do cliente
         'email',            // Email do cliente
+        'cidade',
+        'estado',
     ];
 
     /**
