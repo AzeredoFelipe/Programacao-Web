@@ -28,7 +28,6 @@ class ClienteController extends Controller
             'telefone'      => 'required|string|max:20',
             'cnpj'          => 'required|string|max:14',
             'endereco'      => 'required|string|max:255',
-            
         ]);
 
         // Armazena o cliente com todos os campos
@@ -48,8 +47,8 @@ class ClienteController extends Controller
     }
 
     public function update(Request $request, Cliente $cliente)
-    {
-        // Validação dos campos ao atualizar
+    {   
+        // Validação dos campos
         $request->validate([
             'nome_fantasia' => 'required|string|max:255',
             'razao_social'  => 'required|string|max:255',
@@ -57,20 +56,20 @@ class ClienteController extends Controller
             'telefone'      => 'required|string|max:20',
             'cnpj'          => 'required|string|max:14',
             'endereco'      => 'required|string|max:255',
-            'cidade'        => 'nullable|string|max:255', 
+            'cidade'        => 'nullable|string|max:255',
             'estado'        => 'nullable|string|max:255',
-            
         ]);
 
-        // Atualiza o cliente com todos os campos
+        // Atualiza o cliente com os novos dados
         $cliente->update($request->all());
 
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
     }
 
     public function destroy(Cliente $cliente)
     {
-        $cliente->delete(); // Exclui o cliente
-        return redirect()->route('clientes.index');
+        // Exclui o cliente
+        $cliente->delete(); 
+        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
     }
 }
