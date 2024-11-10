@@ -1,177 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>@yield('title')</title>
-    <style>
-        body {
-            background-color: #f0f2f5;
-        }
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-        #sidebar {
-            min-height: 100vh;
-            background-color: #b20000;
-        }
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        #sidebar .nav-link {
-            color: white;
-            transition: background-color 0.3s;
-            padding: 15px 20px;
-        }
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            @include('layouts.navigation')
 
-        #sidebar .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-
-        #sidebar .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.3);
-            font-weight: bold;
-        }
-
-        main {
-            padding: 2rem;
-            flex-grow: 1;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .logout-button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: auto;
-            text-align: center;
-        }
-
-        .navbar {
-            background-color: #b20000;
-            border: none;
-        }
-
-        .navbar .nav-link {
-            color: white;
-            margin-right: 20px;
-        }
-
-        .navbar-toggler-icon {
-            background-image: none;
-            color: white;
-            border: 1px solid white;
-            width: 30px;
-            height: 30px;
-        }
-
-        .navbar-toggler {
-            border: none;
-        }
-
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-
-        .dropdown-menu {
-            background-color: #b20000;
-            border: none;
-        }
-
-        .dropdown-item {
-            color: white;
-        }
-
-        .collapse {
-            background-color: #b20000;
-            border: none;
-        }
-
-        .submenu .nav-link {
-            color: white;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg d-md-none">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/dashboard') }}">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="clienteDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-users"></i> Clientes
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="clienteDropdown">
-                        <a class="dropdown-item" href="{{ url('/clientes/create') }}">Cadastrar Cliente</a>
-                        <a class="dropdown-item" href="{{ url('/clientes') }}">Listar Clientes</a>
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="bg-white dark:bg-gray-800 shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
                     </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                </header>
+            @endisset
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebar" class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/') }}">
-                                <i class="fas fa-home"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link submenu" data-toggle="collapse" href="#clienteMenu" role="button" aria-expanded="false" aria-controls="clienteMenu">
-                                <i class="fas fa-users"></i> Clientes
-                                <i class="fas fa-angle-down submenu-icon"></i>
-                            </a>
-                            <div class="collapse" id="clienteMenu">
-                                <ul class="nav flex-column submenu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/clientes/create') }}">
-                                            Cadastrar Cliente
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/clientes') }}">
-                                            Listar Clientes
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="logout-button">
-                        <form action="/logout" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link text-white">
-                                <i class="fas fa-sign-out-alt"></i> Sair
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                @yield('content') <!-- Alterado de {{$slot}} para @yield('content') -->
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
             </main>
         </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
+    </body>
 </html>

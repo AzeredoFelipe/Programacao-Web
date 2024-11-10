@@ -7,34 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    use HasFactory;
-
-    /**
-     * Os atributos que podem ser atribuídos em massa.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'nome_fantasia',   // Nome fantasia do cliente
-        'razao_social',     // Razão social do cliente
-        'cnpj',             // CNPJ do cliente
-        'endereco',         // Endereço do cliente
-        'cidade_id',        // ID da cidade (se aplicável)
-        'estado',           // Estado do cliente
-        'cep',              // CEP do cliente
-        'telefone',         // Telefone do cliente
-        'email',            // Email do cliente
+        'nome_fantasia',
+        'razao_social',
+        'cnpj',
+        'endereco',
+        'cidade_id',
+        'estado',
+        'cep',
+        'telefone',
+        'email',
         'cidade',
         'estado',
     ];
-
-    /**
-     * Os atributos que devem ser convertidos.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];    
 }

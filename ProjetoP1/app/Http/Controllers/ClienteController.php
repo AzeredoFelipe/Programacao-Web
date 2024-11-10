@@ -2,74 +2,74 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $clientes = Cliente::all(); // Lista todos os clientes
         return view('clientes.index', compact('clientes'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('clientes.create'); // Exibe o formulário para criar um novo cliente
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        // Validação dos campos
-        $request->validate([
-            'nome_fantasia' => 'required|string|max:255',
-            'razao_social'  => 'required|string|max:255',
-            'email'         => 'required|email|max:255',
-            'telefone'      => 'required|string|max:20',
-            'cnpj'          => 'required|string|max:14',
-            'endereco'      => 'required|string|max:255',
-        ]);
-
-        // Armazena o cliente com todos os campos
         Cliente::create($request->all());
-
-        return redirect()->route('clientes.index');
+        return redirect("/clientes"); // Redireciona para a lista de clientes após criação
     }
 
-    public function show(Cliente $cliente)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
+        $cliente = Cliente::findOrFail($id);
         return view('clientes.show', compact('cliente')); // Exibe os detalhes do cliente
     }
 
-    public function edit(Cliente $cliente)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
+        $cliente = Cliente::findOrFail($id);
         return view('clientes.edit', compact('cliente')); // Exibe o formulário para editar o cliente
     }
 
-    public function update(Request $request, Cliente $cliente)
-    {   
-        // Validação dos campos
-        $request->validate([
-            'nome_fantasia' => 'required|string|max:255',
-            'razao_social'  => 'required|string|max:255',
-            'email'         => 'required|email|max:255',
-            'telefone'      => 'required|string|max:20',
-            'cnpj'          => 'required|string|max:14',
-            'endereco'      => 'required|string|max:255',
-            'cidade'        => 'nullable|string|max:255',
-            'estado'        => 'nullable|string|max:255',
-        ]);
-
-        // Atualiza o cliente com os novos dados
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $cliente = Cliente::findOrFail($id);
         $cliente->update($request->all());
 
-        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
+        return redirect("/clientes"); // Redireciona para a lista de clientes após atualização
     }
 
-    public function destroy(Cliente $cliente)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
     {
-        // Exclui o cliente
-        $cliente->delete(); 
-        return redirect()->route('clientes.index'); // Redireciona para a lista de clientes
+        $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
+        
+        return redirect("/clientes"); // Redireciona para a lista de clientes após exclusão
     }
 }

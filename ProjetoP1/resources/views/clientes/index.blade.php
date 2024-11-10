@@ -1,37 +1,29 @@
-@extends('app')
+<x-app-layout>
 
+    <h5 class="mt-3">Gerenciar Clientes</h5>
 
-@section('title', 'Listar Clientes')
+    <a class="btn btn-success" href="/cliente/create">
+        Inserir novo Cliente
+    </a>
 
-@section('content')
-    <h1>Listar Clientes</h1>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Ações</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($clientes as $cliente)
+            @foreach($clientes as $cliente)
                 <tr>
-                    <td>{{ $cliente->id }}</td>
                     <td>{{ $cliente->nome }}</td>
-                    <td>{{ $cliente->email }}</td>
-                    <td>{{ $cliente->telefone }}</td>
                     <td>
-                        <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning">Editar</a>
-                        <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Deletar</button>
-                        </form>
+                        <a href="/cliente/{{ $cliente->id }}/edit" class="btn btn-warning">Alterar</a>
+                        <a href="/cliente/{{ $cliente->id }}" class="btn btn-danger">Excluir</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-@endsection
+
+</x-app-layout>

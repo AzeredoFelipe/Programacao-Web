@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Cliente</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<x-app-layout>
     <div class="container mt-5">
-        <h1>Cadastrar Cliente</h1>
+        <h5>Cadastrar Cliente</h5>
 
+        <!-- Exibição de Erros -->
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -20,58 +13,65 @@
             </div>
         @endif
 
+        <!-- Formulário -->
         <form action="{{ route('clientes.store') }}" method="POST">
             @csrf
 
+            <!-- Nome Fantasia -->
             <div class="mb-3">
                 <label for="nome_fantasia" class="form-label">Nome Fantasia</label>
                 <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" required>
             </div>
 
+            <!-- Razão Social -->
             <div class="mb-3">
                 <label for="razao_social" class="form-label">Razão Social</label>
                 <input type="text" class="form-control" id="razao_social" name="razao_social" required>
             </div>
 
+            <!-- Email -->
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
 
+            <!-- Telefone -->
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone" required>
             </div>
 
+            <!-- CNPJ -->
             <div class="mb-3">
                 <label for="cnpj" class="form-label">CNPJ</label>
                 <input type="text" class="form-control" id="cnpj" name="cnpj" required>
             </div>
 
+            <!-- Endereço -->
             <div class="mb-3">
                 <label for="endereco" class="form-label">Endereço</label>
                 <input type="text" class="form-control" id="endereco" name="endereco" required>
             </div>
 
+            <!-- Cidade -->
             <div class="mb-3">
-                <label for="cidade" class="form-label">Cidade:</label>
+                <label for="cidade" class="form-label">Cidade</label>
                 <input type="text" class="form-control" id="cidade" name="cidade" required>
             </div>
 
+            <!-- Estado -->
             <div class="mb-3">
-                <label for="estado" class="form-label">Estado:</label>
+                <label for="estado" class="form-label">Estado</label>
                 <input type="text" class="form-control" id="estado" name="estado" required>
             </div>
 
-          
-            <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
+            <!-- Botão de Cadastro -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
+            </div>
         </form>
 
+        <!-- Botão Voltar -->
         <a href="{{ route('clientes.index') }}" class="btn btn-secondary mt-3">Voltar</a>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+</x-app-layout>

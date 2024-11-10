@@ -16,11 +16,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',        // Nome do vendedor
-        'email',       // Email do vendedor
-        'password',    // Senha do vendedor
-        'tipo',        // Tipo de usuário (por exemplo, vendedor, admin)
-        'status',      // Status do vendedor (ativo/inativo)
+        'name',         // Nome do usuário
+        'email',        // Email do usuário
+        'password',     // Senha do usuário
+        'tipo',         // Tipo de usuário (ex: vendedor, admin)
+        'status',       // Status do usuário (ativo/inativo)
     ];
 
     /**
@@ -29,8 +29,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',        
-        'remember_token',  
+        'password',         // Ocultar senha
+        'remember_token',   // Token de "lembrar"
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',  
-        'password' => 'hashed',               
+        'email_verified_at' => 'datetime',  // Data de verificação do email
+        'password' => 'hashed',             // Hash da senha
     ];
 }

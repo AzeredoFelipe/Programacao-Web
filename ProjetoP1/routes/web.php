@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClienteController;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,17 +10,16 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+// Rota autenticada para perfil do usuário
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Rota do recurso de clientes
+    Route::resource('clientes', ClienteController::class); // Essa linha cria todas as rotas para clientes
+});
 
-Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create'); // Formulário para criar cliente
-
-
-Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index'); // Listar clientes
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store'); // Armazenar cliente
-Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show'); // Mostrar cliente específico
-Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit'); // Formulário para editar cliente
-Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update'); // Atualizar cliente
-Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy'); // Excluir cliente
-
-require __DIR__ . '/auth.php'; 
+require __DIR__.'/auth.php';
