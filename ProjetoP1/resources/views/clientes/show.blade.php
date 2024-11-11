@@ -2,7 +2,7 @@
 
     <h5>Excluir Cliente</h5>
 
-    <form action="/cliente/{{$cliente->id}}" method="POST">
+    <form action="/clientes/{{$cliente->id}}" method="POST">
         @csrf
         @method('DELETE')
         <div class="row">

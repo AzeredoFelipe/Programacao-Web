@@ -2,7 +2,7 @@
 
     <h5 class="mt-3">Gerenciar Clientes</h5>
 
-    <a class="btn btn-success" href="/cliente/create">
+    <a class="btn btn-success" href="/clientes/create">
         Inserir novo Cliente
     </a>
 

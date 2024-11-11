@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <h5>Editar Cliente</h5>
 
-        <form action="/cliente/{{ $cliente->id }}" method="POST">
+        <form action="/clientes/{{ $cliente->id }}" method="POST">
             @csrf
             @method('PUT')
 

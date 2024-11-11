@@ -12,12 +12,11 @@ class Cliente extends Model
         'razao_social',
         'cnpj',
         'endereco',
-        'cidade_id',
+        'cidade', // Incluindo o campo cidade
         'estado',
         'cep',
         'telefone',
         'email',
-        'cidade',
-        'estado',
     ];
+    
 }
