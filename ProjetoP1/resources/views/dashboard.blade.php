@@ -1,17 +1,37 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+    <h5 class="mt-3">Bem-vindo ao sistema de controle de estoque!</h5>
+
+    <h3>Total de Clientes: {{ $totalClientes }}</h3>
+    <h3>Total de Produtos: {{ $totalProdutos }}</h3>
+    <h3>Total de Vendas: R$ {{ number_format($totalVendas, 2, ',', '.') }}</h3>
+
+    <!-- Script para o gráfico -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Categorias', 'Valor Médio dos Produtos por Categoria'],
+                @foreach($categorias as $index => $categoria)
+                    ["{{$categoria}}" , {{$valores_medios[$index]}}]
+                @endforeach
+            ]);
+
+            var options = {
+                title: 'Análise de produtos por categoria'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <!-- Área para o gráfico -->
+    <div class="d-flex justify-content-center">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
     </div>
+
 </x-app-layout>

@@ -7,16 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'nome_fantasia',
         'razao_social',
         'cnpj',
         'endereco',
-        'cidade', // Incluindo o campo cidade
+        'cidade',
         'estado',
         'cep',
         'telefone',
         'email',
     ];
-    
+
+    /**
+     * Relacionamento com pedidos.
+     * Um cliente pode ter vários pedidos.
+     */
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
 }

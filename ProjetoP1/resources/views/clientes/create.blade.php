@@ -2,19 +2,7 @@
     <div class="container mt-5">
         <h5>Cadastrar Cliente</h5>
 
-        <!-- Exibição de Erros -->
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <!-- Formulário -->
-        <form action="{{ route('clientes.store') }}" method="POST">
+        <form action="/clientes" method="POST">
             @csrf
 
             <!-- Nome Fantasia -->
