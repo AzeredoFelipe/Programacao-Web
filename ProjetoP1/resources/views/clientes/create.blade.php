@@ -17,12 +17,6 @@
                 <input type="text" class="form-control" id="razao_social" name="razao_social" required>
             </div>
 
-            <!-- Email -->
-            <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-
             <!-- Telefone -->
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone</label>

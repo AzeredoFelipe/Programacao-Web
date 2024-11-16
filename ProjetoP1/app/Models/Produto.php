@@ -11,26 +11,8 @@ class Produto extends Model
 
     protected $fillable = [
         'nome',
-        'descricao',
+        'marca',
         'preco',
-        'categoria_id',
+        'quantidade'
     ];
-
-    /**
-     * Relacionamento com a categoria.
-     * Cada produto pertence a uma categoria.
-     */
-    public function categoria()
-    {
-        return $this->belongsTo(Categoria::class);
-    }
-
-    /**
-     * Relacionamento com pedidos.
-     * Um produto pode estar em vários pedidos.
-     */
-    public function pedidos()
-    {
-        return $this->belongsToMany(Pedido::class)->withPivot('quantidade', 'preco');
-    }
 }

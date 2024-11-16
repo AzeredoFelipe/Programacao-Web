@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id(); // Cria a chave primária
-            $table->string('nome'); // Definindo nome do cliente
-            $table->string('email')->unique(); // Email único
-            $table->string('telefone'); // Definindo campo para telefone
-            $table->text('endereco'); // Campo para endereço
-            $table->timestamps(); // Colunas 'created_at' e 'updated_at'
-
-            // Caso você precise de um relacionamento com outra tabela, por exemplo, 'users'
-            //$table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade'); // Exemplo de chave estrangeira
+            $table->id(); // Chave primária
+            $table->string('nome'); // Nome do cliente
+            $table->string('razao_social'); // Razão Social
+            $table->string('telefone'); // Telefone
+            $table->string('cnpj')->unique(); // CNPJ único
+            $table->string('endereco'); // Endereço
+            $table->string('cidade'); // Cidade
+            $table->string('estado'); // Estado
+            $table->timestamps(); // Colunas created_at e updated_at
         });
     }
 

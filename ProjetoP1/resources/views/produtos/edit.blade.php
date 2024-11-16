@@ -1,41 +1,35 @@
-<x-app-layout>
-    <div class="container mt-5">
-        <h5>Editar Produto</h5>
+<!-- resources/views/produtos/edit.blade.php -->
+@extends('layouts.app')
 
-        <form action="/produto/{{ $produto->id }}" method="POST">
+@section('content')
+    <div class="container">
+        <h1>Editar Produto</h1>
+
+        <form action="{{ route('produtos.update', $produto->id) }}" method="POST">
             @csrf
             @method('PUT')
 
-            <!-- Nome do Produto -->
-            <div class="row">
-                <div class="col">
-                    <label for="nome" class="form-label">Nome do Produto</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="{{ $produto->nome }}" required>
-                </div>
+            <div class="form-group">
+                <label for="nome">Nome do Produto</label>
+                <input type="text" name="nome" id="nome" class="form-control" value="{{ $produto->nome }}" required>
             </div>
 
-            <!-- Descrição -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="descricao" class="form-label">Descrição</label>
-                    <textarea class="form-control" id="descricao" name="descricao" rows="3" required>{{ $produto->descricao }}</textarea>
-                </div>
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" name="marca" id="marca" class="form-control" value="{{ $produto->marca }}" required>
             </div>
 
-            <!-- Preço -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="preco" class="form-label">Preço</label>
-                    <input type="number" class="form-control" id="preco" name="preco" step="0.01" value="{{ $produto->preco }}" required>
-                </div>
+            <div class="form-group">
+                <label for="preco">Preço</label>
+                <input type="text" name="preco" id="preco" class="form-control" value="{{ $produto->preco }}" required>
             </div>
 
-            <!-- Botão de Atualizar -->
-            <div class="row mt-3">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary">Atualizar</button>
-                </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade</label>
+                <input type="number" name="quantidade" id="quantidade" class="form-control" value="{{ $produto->quantidade }}" required>
             </div>
+
+            <button type="submit" class="btn btn-warning mt-3">Atualizar Produto</button>
         </form>
     </div>
-</x-app-layout>
+@endsection

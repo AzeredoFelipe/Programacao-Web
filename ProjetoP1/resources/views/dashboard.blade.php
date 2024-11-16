@@ -1,37 +1,27 @@
 <x-app-layout>
-
-    <h5 class="mt-3">Bem-vindo ao sistema de controle de estoque!</h5>
-
-    <h3>Total de Clientes: {{ $totalClientes }}</h3>
-    <h3>Total de Produtos: {{ $totalProdutos }}</h3>
-    <h3>Total de Vendas: R$ {{ number_format($totalVendas, 2, ',', '.') }}</h3>
-
-    <!-- Script para o gráfico -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Categorias', 'Valor Médio dos Produtos por Categoria'],
-                @foreach($categorias as $index => $categoria)
-                    ["{{$categoria}}" , {{$valores_medios[$index]}}]
-                @endforeach
-            ]);
-
-            var options = {
-                title: 'Análise de produtos por categoria'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }
-    </script>
-
-    <!-- Área para o gráfico -->
-    <div class="d-flex justify-content-center">
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <div class="container mt-4">
+        <h1 class="text-center">Dashboard</h1>
+        
+        <div class="row mt-5">
+            <!-- Total de Clientes -->
+            <div class="col-md-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Total de Clientes</div>
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ $totalClientes }}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Total de Produtos -->
+            <div class="col-md-6">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Total de Produtos</div>
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ $totalProdutos }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </x-app-layout>

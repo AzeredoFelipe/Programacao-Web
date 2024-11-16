@@ -1,31 +1,39 @@
-<x-app-layout>
-    <h5 class="mt-3">Gerenciar Produtos</h5>
+<!-- resources/views/produtos/index.blade.php -->
+@extends('layouts.app')
 
-    <a class="btn btn-success" href="/produto/create">
-        Inserir novo Produto
-    </a>
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Preço</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($produtos as $produto)
+@section('content')
+    <div class="container">
+        <h1>Produtos</h1>
+        <a href="{{ route('produtos.create') }}" class="btn btn-primary mb-3">Cadastrar Novo Produto</a>
+        
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{ $produto->nome }}</td>
-                    <td>{{ $produto->descricao }}</td>
-                    <td>{{ $produto->preco }}</td>
-                    <td>
-                        <a href="/produto/{{ $produto->id }}/edit" class="btn btn-warning">Alterar</a>
-                        <a href="/produto/{{ $produto->id }}" class="btn btn-danger">Excluir</a>
-                    </td>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</x-app-layout>
+            </thead>
+            <tbody>
+                @foreach ($produtos as $produto)
+                    <tr>
+                        <td>{{ $produto->nome }}</td>
+                        <td>{{ $produto->marca }}</td>
+                        <td>{{ $produto->preco }}</td>
+                        <td>{{ $produto->quantidade }}</td>
+                        <td>
+                            <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

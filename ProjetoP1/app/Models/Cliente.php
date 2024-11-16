@@ -10,23 +10,12 @@ class Cliente extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome_fantasia',
+        'nome',
         'razao_social',
+        'telefone',
         'cnpj',
         'endereco',
         'cidade',
-        'estado',
-        'cep',
-        'telefone',
-        'email',
+        'estado'
     ];
-
-    /**
-     * Relacionamento com pedidos.
-     * Um cliente pode ter vários pedidos.
-     */
-    public function pedidos()
-    {
-        return $this->hasMany(Pedido::class);
-    }
 }
