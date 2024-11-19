@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id(); // Chave primária
-            $table->string('nome'); // Nome do cliente
+            $table->string('nome_fantasia'); // Nome do cliente
             $table->string('razao_social'); // Razão Social
             $table->string('telefone'); // Telefone
             $table->string('cnpj')->unique(); // CNPJ único

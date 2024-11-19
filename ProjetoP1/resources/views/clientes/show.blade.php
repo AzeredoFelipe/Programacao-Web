@@ -1,24 +1,39 @@
-<x-app-layout>
+@extends('layouts.app')
 
-    <h5>Excluir Cliente</h5>
+@section('content')
+    <h5 class="mt-3">Detalhes do Cliente</h5>
 
-    <form action="/clientes/{{$cliente->id}}" method="POST">
-        @csrf
-        @method('DELETE')
-        <div class="row">
-            <div class="col">
-                <label for="nome" class="form-label">Informe o nome do cliente:</label>
-                <input type="text" name="nome" class="form-control" 
-                    value="{{ $cliente->nome }}" disabled/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="submit" class="btn btn-danger">
-                    Excluir
-                </button>
-            </div>
-        </div>
-    </form>
+    <table class="table table-bordered">
+        <tr>
+            <th>Nome Fantasia</th>
+            <td>{{ $cliente->nome_fantasia }}</td>
+        </tr>
+        <tr>
+            <th>Razão Social</th>
+            <td>{{ $cliente->razao_social }}</td>
+        </tr>
+        <tr>
+            <th>Telefone</th>
+            <td>{{ $cliente->telefone }}</td>
+        </tr>
+        <tr>
+            <th>CNPJ</th>
+            <td>{{ $cliente->cnpj }}</td>
+        </tr>
+        <tr>
+            <th>Endereço</th>
+            <td>{{ $cliente->endereco }}</td>
+        </tr>
+        <tr>
+            <th>Cidade</th>
+            <td>{{ $cliente->cidade }}</td>
+        </tr>
+        <tr>
+            <th>Estado</th>
+            <td>{{ $cliente->estado }}</td>
+        </tr>
+    </table>
 
-</x-app-layout>
+    <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning">Editar</a>
+    <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Voltar</a>
+@endsection

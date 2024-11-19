@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
     <h5 class="mt-3">Editar Cliente</h5>
 
     <form action="{{ route('clientes.update', $cliente->id) }}" method="POST">
@@ -13,11 +15,6 @@
         <div class="mb-3">
             <label for="razao_social" class="form-label">Razão Social</label>
             <input type="text" class="form-control" id="razao_social" name="razao_social" value="{{ old('razao_social', $cliente->razao_social) }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $cliente->email) }}" required>
         </div>
 
         <div class="mb-3">
@@ -47,4 +44,4 @@
 
         <button type="submit" class="btn btn-primary">Atualizar Cliente</button>
     </form>
-</x-app-layout>
+@endsection

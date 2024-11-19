@@ -9,9 +9,10 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::all();
-        return view('clientes.index', compact('clientes'));
+        $clientes = Cliente::all(); // Retorna todos os clientes
+        return view('clientes.index', compact('clientes')); // Passa os dados para a view
     }
+   
 
     public function create()
     {
@@ -22,7 +23,7 @@ class ClienteController extends Controller
     {
         // Validação
         $request->validate([
-            'nome' => 'required|string|max:255',
+            'nome_fantasia' => 'required|string|max:255',
             'razao_social' => 'required|string|max:255',
             'telefone' => 'required|string|max:15',
             'cnpj' => 'required|string|max:14|unique:clientes,cnpj',
@@ -31,9 +32,19 @@ class ClienteController extends Controller
             'estado' => 'required|string|max:2',
         ]);
 
-        Cliente::create($request->all());
+        // Criação do cliente com validação de campos específicos
+        Cliente::create([
+            'nome_fantasia' => $request->nome_fantasia,
+            'razao_social' => $request->razao_social,
+            'telefone' => $request->telefone,
+            'cnpj' => $request->cnpj,
+            'endereco' => $request->endereco,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+        ]);
 
-        return redirect()->route('clientes.index');
+        // Redireciona de volta para a lista de clientes com mensagem de sucesso
+        return redirect()->route('clientes.index')->with('success', 'Cliente criado com sucesso!');
     }
 
     public function edit($id)
@@ -44,10 +55,10 @@ class ClienteController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Validação
         $request->validate([
-            'nome' => 'required|string|max:255',
+            'nome_fantasia' => 'required|string|max:255',
             'razao_social' => 'required|string|max:255',
-            'email' => 'required|email|unique:clientes,email,' . $id,
             'telefone' => 'required|string|max:15',
             'cnpj' => 'required|string|max:14|unique:clientes,cnpj,' . $id,
             'endereco' => 'required|string|max:255',
@@ -55,17 +66,33 @@ class ClienteController extends Controller
             'estado' => 'required|string|max:2',
         ]);
 
+        // Encontrar o cliente e atualizar os dados
         $cliente = Cliente::findOrFail($id);
-        $cliente->update($request->all());
+        $cliente->update([
+            'nome_fantasia' => $request->nome_fantasia,
+            'razao_social' => $request->razao_social,
+            'telefone' => $request->telefone,
+            'cnpj' => $request->cnpj,
+            'endereco' => $request->endereco,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+        ]);
 
-        return redirect()->route('clientes.index');
+        // Redireciona de volta para a lista de clientes com mensagem de sucesso
+        return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
+        // Encontrar o cliente e deletar
         $cliente = Cliente::findOrFail($id);
+
+        // Autorização para exclusão (caso necessário)
+        // $this->authorize('delete', $cliente);
+
         $cliente->delete();
 
-        return redirect()->route('clientes.index');
+        // Redireciona para a lista de clientes com mensagem de sucesso
+        return redirect()->route('clientes.index')->with('success', 'Cliente excluído com sucesso!');
     }
 }

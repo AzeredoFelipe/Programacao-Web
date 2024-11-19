@@ -1,46 +1,35 @@
-<x-app-layout>
+@extends('layouts.app')
 
-    <h5>Excluir Produto</h5>
+@section('content')
+    <h5 class="mt-3">Detalhes do Produto</h5>
 
+    <table class="table table-bordered">
+        <tr>
+            <th>Nome do Produto</th>
+            <td>{{ $produto->nome }}</td>
+        </tr>
+        <tr>
+            <th>Marca</th>
+            <td>{{ $produto->descricao }}</td>
+        </tr>
+        <tr>
+            <th>Preço</th>
+            <td>{{ number_format($produto->preco, 2, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <th>Quantidade</th>
+            <td>{{ $produto->quantidade }}</td>
+        </tr>
+    </table>
+
+    <!-- Botão de Exclusão -->
     <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        
-        <!-- Nome do Produto -->
-        <div class="row">
-            <div class="col">
-                <label for="nome" class="form-label">Nome do Produto:</label>
-                <input type="text" name="nome" class="form-control" 
-                    value="{{ $produto->nome }}" disabled/>
-            </div>
-        </div>
-
-        <!-- Descrição do Produto -->
-        <div class="row mt-3">
-            <div class="col">
-                <label for="descricao" class="form-label">Marca:</label>
-                <input type="text" name="descricao" class="form-control" 
-                    value="{{ $produto->descricao }}" disabled/>
-            </div>
-        </div>
-
-        <!-- Preço do Produto -->
-        <div class="row mt-3">
-            <div class="col">
-                <label for="preco" class="form-label">Preço:</label>
-                <input type="text" name="preco" class="form-control" 
-                    value="{{ number_format($produto->preco, 2, ',', '.') }}" disabled/>
-            </div>
-        </div>
-
-        <!-- Botão de Exclusão -->
-        <div class="row mt-3">
-            <div class="col">
-                <button type="submit" class="btn btn-danger">
-                    Excluir
-                </button>
-            </div>
-        </div>
+        <button type="submit" class="btn btn-danger">
+            Excluir Produto
+        </button>
     </form>
 
-</x-app-layout>
+    <a href="{{ route('produtos.index') }}" class="btn btn-secondary mt-3">Voltar</a>
+@endsection

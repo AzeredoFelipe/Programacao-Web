@@ -1,34 +1,43 @@
-<!-- resources/views/produtos/create.blade.php -->
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Cadastrar Produto</h1>
+    <div class="container mt-5">
+        <h5>Cadastrar Produto</h5>
 
         <form action="{{ route('produtos.store') }}" method="POST">
             @csrf
 
-            <div class="form-group">
-                <label for="nome">Nome do Produto</label>
-                <input type="text" name="nome" id="nome" class="form-control" required>
+            <!-- Nome do Produto -->
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do Produto</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
             </div>
 
-            <div class="form-group">
-                <label for="marca">Marca</label>
-                <input type="text" name="marca" id="marca" class="form-control" required>
+            <!-- Marca -->
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" id="marca" name="marca" required>
             </div>
 
-            <div class="form-group">
-                <label for="preco">Preço</label>
-                <input type="text" name="preco" id="preco" class="form-control" required>
+            <!-- Preço -->
+            <div class="mb-3">
+                <label for="preco" class="form-label">Preço</label>
+                <input type="text" class="form-control" id="preco" name="preco" required>
             </div>
 
-            <div class="form-group">
-                <label for="quantidade">Quantidade</label>
-                <input type="number" name="quantidade" id="quantidade" class="form-control" required>
+            <!-- Quantidade -->
+            <div class="mb-3">
+                <label for="quantidade" class="form-label">Quantidade</label>
+                <input type="number" class="form-control" id="quantidade" name="quantidade" required>
             </div>
 
-            <button type="submit" class="btn btn-success mt-3">Cadastrar Produto</button>
+            <!-- Botão de Cadastro -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+            </div>
         </form>
+
+        <!-- Botão Voltar -->
+        <a href="{{ route('produtos.index') }}" class="btn btn-secondary mt-3">Voltar</a>
     </div>
 @endsection

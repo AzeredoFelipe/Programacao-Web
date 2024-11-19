@@ -1,12 +1,14 @@
-<!-- resources/views/produtos/index.blade.php -->
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
-        <h1>Produtos</h1>
+        <h5 class="mt-3">Gerenciar Produtos</h5>
+
+        <!-- Link para cadastrar novo produto -->
         <a href="{{ route('produtos.create') }}" class="btn btn-primary mb-3">Cadastrar Novo Produto</a>
         
-        <table class="table">
+        <!-- Tabela de Produtos -->
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -24,11 +26,14 @@
                         <td>{{ $produto->preco }}</td>
                         <td>{{ $produto->quantidade }}</td>
                         <td>
-                            <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-warning">Editar</a>
+                            <!-- Link para editar o produto -->
+                            <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                            <!-- Formulário para excluir o produto -->
                             <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
                             </form>
                         </td>
                     </tr>

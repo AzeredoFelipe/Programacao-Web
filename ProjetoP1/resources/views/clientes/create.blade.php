@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
     <div class="container mt-5">
         <h5>Cadastrar Cliente</h5>
 
@@ -56,4 +58,4 @@
         <!-- Botão Voltar -->
         <a href="{{ route('clientes.index') }}" class="btn btn-secondary mt-3">Voltar</a>
     </div>
-</x-app-layout>
+@endsection
