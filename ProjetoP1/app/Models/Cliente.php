@@ -18,4 +18,8 @@ class Cliente extends Model
         'cidade',
         'estado'
     ];
+    public function vendas()
+    {
+        return $this->hasMany(Venda::class);
+    }
 }

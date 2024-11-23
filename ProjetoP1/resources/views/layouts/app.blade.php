@@ -14,6 +14,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- FontAwesome (Ícones) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <!-- Custom Styles -->
     <style>
         body {
@@ -48,14 +51,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <!-- Clientes -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('clientes.index') }}">Clientes</a>
+                        <a class="nav-link active" href="{{ route('clientes.index') }}"><i class="fas fa-users"></i> Clientes</a>
                     </li>
+                    <!-- Produtos -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('produtos.index') }}"><i class="fas fa-box"></i> Produtos</a>
                     </li>
+                    <!-- Vendas -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile.edit') }}">Perfil</a>
+                        <a class="nav-link" href="{{ route('vendas.create', ['cliente_id' => 1]) }}"><i class="fas fa-cart-plus"></i> Vendas</a>
+                    </li>
+                    <!-- Dashboard -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <!-- Perfil -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profile.edit') }}"><i class="fas fa-user"></i> Perfil</a>
                     </li>
                 </ul>
             </div>

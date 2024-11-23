@@ -9,10 +9,6 @@ class Produto extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nome',
-        'marca',
-        'preco',
-        'quantidade'
-    ];
+    // Permitir atribuição em massa para os seguintes campos
+    protected $fillable = ['nome', 'marca', 'preco', 'quantidade'];
 }

@@ -2,7 +2,7 @@
     <div class="container mt-4">
         <h1 class="text-center">Dashboard</h1>
 
-        <!-- Botão para adicionar novo cliente ou produto -->
+        <!-- Botões para adicionar novos itens -->
         <div class="text-center mb-4">
             <a href="{{ route('clientes.create') }}" class="btn btn-success">Inserir Novo Cliente</a>
             <a href="{{ route('produtos.create') }}" class="btn btn-primary">Inserir Novo Produto</a>
@@ -30,29 +30,26 @@
             </div>
         </div>
 
-        <!-- Exemplo de Tabela para produtos -->
+        <!-- Vendas -->
         <div class="mt-5">
-            <h5>Produtos Cadastrados</h5>
+            <h5>Vendas Realizadas</h5>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Preço</th>
+                        <th>Cliente</th>
+                        <th>Valor</th>
+                        <th>Data</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($produtos as $produto)
+                    @foreach($vendas as $venda)
                         <tr>
-                            <td>{{ $produto->nome }}</td>
-                            <td>{{ $produto->preco }}</td>
+                            <td>{{ $venda->cliente->nome }}</td>
+                            <td>{{ $venda->valor }}</td>
+                            <td>{{ $venda->created_at->format('d/m/Y') }}</td>
                             <td>
-                                <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-warning btn-sm">Alterar</a>
-                                <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                                </form>
+                                <a href="{{ route('vendas.create', $venda->cliente->id) }}" class="btn btn-info btn-sm">Nova Venda</a>
                             </td>
                         </tr>
                     @endforeach
