@@ -1,60 +1,79 @@
-<x-app-layout>
-    <div class="container mt-4">
-        <h1 class="text-center">Dashboard</h1>
+@extends('layouts.app')
 
-        <!-- Botões para adicionar novos itens -->
-        <div class="text-center mb-4">
-            <a href="{{ route('clientes.create') }}" class="btn btn-success">Inserir Novo Cliente</a>
-            <a href="{{ route('produtos.create') }}" class="btn btn-primary">Inserir Novo Produto</a>
-        </div>
+@section('content')
+    <div class="container mt-5">
+        <h2>Dashboard</h2>
 
-        <div class="row mt-5">
+        <!-- Informações Gerais -->
+        <div class="row">
             <!-- Total de Clientes -->
-            <div class="col-md-6">
-                <div class="card text-white bg-primary mb-3">
-                    <div class="card-header">Total de Clientes</div>
-                    <div class="card-body">
-                        <h3 class="card-title text-center">{{ $totalClientes }}</h3>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center bg-primary text-white">
+                        <h5 class="card-title"><i class="fas fa-users"></i> Total de Clientes</h5>
+                        <p class="card-text fs-4">{{ $totalClientes }}</p>
                     </div>
                 </div>
             </div>
 
             <!-- Total de Produtos -->
-            <div class="col-md-6">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-header">Total de Produtos</div>
-                    <div class="card-body">
-                        <h3 class="card-title text-center">{{ $totalProdutos }}</h3>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center bg-success text-white">
+                        <h5 class="card-title"><i class="fas fa-cogs"></i> Total de Produtos</h5>
+                        <p class="card-text fs-4">{{ $totalProdutos }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total de Vendas por Cliente -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center bg-warning text-dark">
+                        <h5 class="card-title"><i class="fas fa-chart-line"></i> Vendas por Cliente</h5>
+                        @foreach ($vendasPorCliente as $venda)
+                            <p class="card-text">
+                                <strong>{{ $venda->cliente->nome_fantasia }}</strong><br>
+                                Total de Vendas: <span class="fw-bold">R$ {{ number_format($venda->total_vendas, 2, ',', '.') }}</span>
+                            </p>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Vendas -->
-        <div class="mt-5">
-            <h5>Vendas Realizadas</h5>
-            <table class="table table-hover">
-                <thead>
+        <!-- Tabela de Vendas -->
+        <h4 class="mt-4 mb-3">Vendas Realizadas</h4>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Cliente</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Total</th>
+                    <th>Data da Venda</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($vendas as $venda)
                     <tr>
-                        <th>Cliente</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                        <th>Ações</th>
+                        <td>{{ $venda->id }}</td>
+                        <td>{{ $venda->cliente->nome_fantasia }}</td>
+                        <td>{{ $venda->produto->nome }}</td>
+                        <td>{{ $venda->quantidade }}</td>
+                        <td>R$ {{ number_format($venda->preco_unitario, 2, ',', '.') }}</td>
+                        <td>R$ {{ number_format($venda->valor_total, 2, ',', '.') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($venda->data_venda)->format('d/m/Y') }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($vendas as $venda)
-                        <tr>
-                            <td>{{ $venda->cliente->nome }}</td>
-                            <td>{{ $venda->valor }}</td>
-                            <td>{{ $venda->created_at->format('d/m/Y') }}</td>
-                            <td>
-                                <a href="{{ route('vendas.create', $venda->cliente->id) }}" class="btn btn-info btn-sm">Nova Venda</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
-</x-app-layout>
+@endsection
+
+
+
+

@@ -8,18 +8,14 @@
         <form action="{{ route('vendas.store') }}" method="POST">
             @csrf
 
-            <!-- Seleção de Cliente -->
+            <!-- Cliente -->
             <div class="mb-3">
                 <label for="cliente" class="form-label">Cliente</label>
-                <select name="cliente_id" id="cliente" class="form-control" required>
-                    <option value="">Selecione o Cliente</option>
-                    @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}">{{ $cliente->nome_fantasia }} - {{ $cliente->razao_social }}</option>
-                    @endforeach
-                </select>
+                <input type="text" class="form-control" id="cliente" value="{{ $cliente->nome_fantasia }}" readonly>
+                <input type="hidden" name="cliente_id" value="{{ $cliente->id }}">
             </div>
 
-            <!-- Campo Produto -->
+            <!-- Produto -->
             <div class="mb-3">
                 <label for="produto_id" class="form-label">Produto</label>
                 <select name="produto_id" id="produto_id" class="form-control" required>
@@ -49,6 +45,6 @@
         </form>
 
         <!-- Botão Voltar -->
-        <a href="{{ route('vendas.index') }}" class="btn btn-secondary mt-3">Voltar</a>
+        <a href="{{ route('dashboard') }}" class="btn btn-secondary mt-3">Voltar</a>
     </div>
 @endsection

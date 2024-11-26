@@ -4,11 +4,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VendaController;
+use App\Http\Controllers\DashboardController;
 
 // Rota para o dashboard (somente para usuários autenticados)
-Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'gerarGrafico'])->name('dashboard');
+Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 // Página inicial (não requer autenticação)
 Route::get('/', function () {
