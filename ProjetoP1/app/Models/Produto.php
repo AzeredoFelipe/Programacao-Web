@@ -9,6 +9,6 @@ class Produto extends Model
 {
     use HasFactory;
 
-    // Permitir atribuição em massa para os seguintes campos
+    
     protected $fillable = ['nome', 'marca', 'preco', 'quantidade'];
 }
